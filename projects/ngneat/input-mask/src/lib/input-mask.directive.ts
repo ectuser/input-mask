@@ -21,11 +21,12 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
-import _Inputmask from 'inputmask';
 import type Inputmask from 'inputmask';
 
 import { InputmaskOptions } from './types';
 import { InputMaskConfig, INPUT_MASK_CONFIG } from './config';
+import { Subscription, from } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 // The initial issue: https://github.com/ngneat/input-mask/issues/40
 // Webpack 5 has module resolution changes. Libraries should configure the `output.export`
@@ -33,11 +34,6 @@ import { InputMaskConfig, INPUT_MASK_CONFIG } from './config';
 // a UMD format, to tell Webpack that there's a default export.
 // The `_Inputmask` is an object with 2 properties: `{ __esModule: true, default: Inputmask }`.
 // But we want to be backwards-compatible, so we try to read the `default` property first; otherwise, we fall back to `_Inputmask`.
-
-// eslint-disable-next-line @typescript-eslint/naming-convention
-const InputmaskConstructor =
-  (_Inputmask as unknown as { default?: Inputmask.Static }).default ||
-  _Inputmask;
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
@@ -72,6 +68,7 @@ export class InputMaskDirective<T = any>
   private onChange: (value: T | null) => void = () => {};
 
   private mutationObserver: MutationObserver | null = null;
+  private subscription = new Subscription();
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: string,
@@ -108,6 +105,7 @@ export class InputMaskDirective<T = any>
   ngOnDestroy(): void {
     this.removeInputMaskPlugin();
     this.mutationObserver?.disconnect();
+    this.subscription.unsubscribe();
   }
 
   writeValue(value: string): void {
@@ -164,17 +162,27 @@ export class InputMaskDirective<T = any>
       return;
     }
 
-    const { parser, formatter, ...options } = inputMaskOptions;
-    this.inputMaskPlugin = this.ngZone.runOutsideAngular(() =>
-      new InputmaskConstructor(options).mask(nativeInputElement)
-    );
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    const sub = from(import('inputmask')).pipe(take(1)).subscribe(_Inputmask => {
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      const InputmaskConstructor: any =
+        (_Inputmask as unknown as { default?: Inputmask.Static }).default ||
+        _Inputmask;
 
-    if (this.control) {
-      setTimeout(() => {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        this.control!.updateValueAndValidity();
-      });
-    }
+      const { parser, formatter, ...options } = inputMaskOptions;
+      this.inputMaskPlugin = this.ngZone.runOutsideAngular(() =>
+        new InputmaskConstructor(options).mask(nativeInputElement)
+      );
+
+      if (this.control) {
+        setTimeout(() => {
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+          this.control!.updateValueAndValidity();
+        });
+      }
+    });
+
+    this.subscription.add(sub);
   }
 
   private get control(): AbstractControl | null | undefined {
@@ -225,3 +233,4 @@ export class InputMaskDirective<T = any>
     this.inputMaskPlugin = null;
   }
 }
+
