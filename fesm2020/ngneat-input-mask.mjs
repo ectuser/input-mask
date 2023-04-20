@@ -102,7 +102,7 @@ class InputMaskDirective {
             return;
         }
         // eslint-disable-next-line @typescript-eslint/naming-convention
-        const { default: InputmaskConstructor } = await import('inputmask');
+        const { default: InputmaskConstructor } = await import(/* webpackChunkName: "inputmask" */ 'inputmask');
         const { parser, formatter, ...options } = inputMaskOptions;
         this.inputMaskPlugin = this.ngZone.runOutsideAngular(() => new InputmaskConstructor(options).mask(nativeInputElement));
         if (this.control) {
