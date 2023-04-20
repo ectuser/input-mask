@@ -102,7 +102,7 @@ class InputMaskDirective {
             return;
         }
         // @ts-ignore
-        const { default: _Inputmask } = await import('inputmask.es6.js');
+        const { default: _Inputmask } = await import('node_modules/inputmask/lib/bindings/inputmask.es6.js');
         // eslint-disable-next-line @typescript-eslint/naming-convention
         const InputmaskConstructor = _Inputmask.default ||
             _Inputmask;
