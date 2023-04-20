@@ -106,7 +106,7 @@ class InputMaskDirective {
                 return;
             }
             // @ts-ignore
-            const { default: _Inputmask } = yield import('node_modules/inputmask/lib/bindings/inputmask.es6.js');
+            const { default: _Inputmask } = yield import('inputmask/dist/inputmask.es6');
             // eslint-disable-next-line @typescript-eslint/naming-convention
             const InputmaskConstructor = _Inputmask.default ||
                 _Inputmask;

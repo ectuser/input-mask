@@ -1,6 +1,6 @@
 {
   "name": "@ngneat/input-mask",
-  "version": "6.6.1",
+  "version": "6.6.2",
   "description": "@ngneat/input-mask is an angular library that creates an input mask.",
   "peerDependencies": {
     "@angular/core": ">=14.0.0",
