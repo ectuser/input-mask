@@ -105,8 +105,11 @@ class InputMaskDirective {
                 Object.keys(inputMaskOptions).length === 0) {
                 return;
             }
+            // @ts-ignore
+            const { default: _Inputmask } = yield import('inputmask.es6.js');
             // eslint-disable-next-line @typescript-eslint/naming-convention
-            const { default: InputmaskConstructor } = yield import(/* webpackChunkName: "inputmask" */ 'inputmask');
+            const InputmaskConstructor = _Inputmask.default ||
+                _Inputmask;
             const { parser, formatter } = inputMaskOptions, options = __rest(inputMaskOptions, ["parser", "formatter"]);
             this.inputMaskPlugin = this.ngZone.runOutsideAngular(() => new InputmaskConstructor(options).mask(nativeInputElement));
             if (this.control) {
