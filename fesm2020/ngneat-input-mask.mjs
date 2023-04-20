@@ -93,7 +93,7 @@ class InputMaskDirective {
         // property now differs.
         this.registerOnChange(this.onChange);
     }
-    createInputMaskPlugin() {
+    async createInputMaskPlugin() {
         const { nativeInputElement, inputMaskOptions } = this;
         if (isPlatformServer(this.platformId) ||
             !nativeInputElement ||
@@ -102,20 +102,15 @@ class InputMaskDirective {
             return;
         }
         // eslint-disable-next-line @typescript-eslint/naming-convention
-        import('inputmask').then(({ default: MyClass }) => {
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            // const InputmaskConstructor: any =
-            //     (MyClass as unknown as { default?: Inputmask.Static }).default ||
-            //     MyClass;
-            const { parser, formatter, ...options } = inputMaskOptions;
-            this.inputMaskPlugin = this.ngZone.runOutsideAngular(() => new MyClass(options).mask(nativeInputElement));
-            if (this.control) {
-                setTimeout(() => {
-                    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                    this.control.updateValueAndValidity();
-                });
-            }
-        });
+        const { default: InputmaskConstructor } = await import('inputmask');
+        const { parser, formatter, ...options } = inputMaskOptions;
+        this.inputMaskPlugin = this.ngZone.runOutsideAngular(() => new InputmaskConstructor(options).mask(nativeInputElement));
+        if (this.control) {
+            setTimeout(() => {
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                this.control.updateValueAndValidity();
+            });
+        }
     }
     get control() {
         return this.ngControl?.control;

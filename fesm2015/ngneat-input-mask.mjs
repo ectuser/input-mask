@@ -1,4 +1,4 @@
-import { __rest } from 'tslib';
+import { __awaiter, __rest } from 'tslib';
 import { isPlatformServer } from '@angular/common';
 import * as i0 from '@angular/core';
 import { InjectionToken, PLATFORM_ID, Directive, Inject, Optional, Self, Input, HostListener, NgModule } from '@angular/core';
@@ -97,21 +97,18 @@ class InputMaskDirective {
         this.registerOnChange(this.onChange);
     }
     createInputMaskPlugin() {
-        const { nativeInputElement, inputMaskOptions } = this;
-        if (isPlatformServer(this.platformId) ||
-            !nativeInputElement ||
-            inputMaskOptions === null ||
-            Object.keys(inputMaskOptions).length === 0) {
-            return;
-        }
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        import('inputmask').then(({ default: MyClass }) => {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { nativeInputElement, inputMaskOptions } = this;
+            if (isPlatformServer(this.platformId) ||
+                !nativeInputElement ||
+                inputMaskOptions === null ||
+                Object.keys(inputMaskOptions).length === 0) {
+                return;
+            }
             // eslint-disable-next-line @typescript-eslint/naming-convention
-            // const InputmaskConstructor: any =
-            //     (MyClass as unknown as { default?: Inputmask.Static }).default ||
-            //     MyClass;
+            const { default: InputmaskConstructor } = yield import('inputmask');
             const { parser, formatter } = inputMaskOptions, options = __rest(inputMaskOptions, ["parser", "formatter"]);
-            this.inputMaskPlugin = this.ngZone.runOutsideAngular(() => new MyClass(options).mask(nativeInputElement));
+            this.inputMaskPlugin = this.ngZone.runOutsideAngular(() => new InputmaskConstructor(options).mask(nativeInputElement));
             if (this.control) {
                 setTimeout(() => {
                     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
