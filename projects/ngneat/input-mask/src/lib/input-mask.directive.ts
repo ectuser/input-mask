@@ -21,7 +21,6 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
-import _Inputmask from 'inputmask';
 import type Inputmask from 'inputmask';
 
 import { InputmaskOptions } from './types';
@@ -33,11 +32,6 @@ import { InputMaskConfig, INPUT_MASK_CONFIG } from './config';
 // a UMD format, to tell Webpack that there's a default export.
 // The `_Inputmask` is an object with 2 properties: `{ __esModule: true, default: Inputmask }`.
 // But we want to be backwards-compatible, so we try to read the `default` property first; otherwise, we fall back to `_Inputmask`.
-
-// eslint-disable-next-line @typescript-eslint/naming-convention
-const InputmaskConstructor =
-  (_Inputmask as unknown as { default?: Inputmask.Static }).default ||
-  _Inputmask;
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
@@ -152,7 +146,7 @@ export class InputMaskDirective<T = any>
     this.registerOnChange(this.onChange);
   }
 
-  private createInputMaskPlugin(): void {
+  private async createInputMaskPlugin() {
     const { nativeInputElement, inputMaskOptions } = this;
 
     if (
@@ -163,6 +157,17 @@ export class InputMaskDirective<T = any>
     ) {
       return;
     }
+
+    /* eslint-disable @typescript-eslint/naming-convention */
+    // @ts-ignore
+    const { default: _Inputmask } = await import(
+      'inputmask/dist/inputmask.es6'
+    );
+
+    const InputmaskConstructor =
+      (_Inputmask as unknown as { default?: Inputmask.Static }).default ||
+      _Inputmask;
+    /* eslint-enable @typescript-eslint/naming-convention */
 
     const { parser, formatter, ...options } = inputMaskOptions;
     this.inputMaskPlugin = this.ngZone.runOutsideAngular(() =>
