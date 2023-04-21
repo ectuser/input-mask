@@ -159,8 +159,8 @@ export class InputMaskDirective<T = any>
     }
 
     /* eslint-disable @typescript-eslint/naming-convention */
-    // @ts-ignore
     const { default: _Inputmask } = await import(
+      // @ts-ignore
       'inputmask/dist/inputmask.es6'
     );
 

@@ -75,7 +75,7 @@
 
 ### BREAKING CHANGES
 
-* The `@ngneat/input-mask` is shipped with `.mjs` files,
+* The `@ectuser/input-mask-test` is shipped with `.mjs` files,
 following the APF (Angular Package Format) spec starting from Angular 13.
 `.mjs` files are compatible only with Angular 13 version and higher.
 
@@ -101,7 +101,7 @@ following the APF (Angular Package Format) spec starting from Angular 13.
 
 ### BREAKING CHANGES
 
-* The `@ngneat/input-mask` is shipped with `.mjs` files,
+* The `@ectuser/input-mask-test` is shipped with `.mjs` files,
 following the APF (Angular Package Format) spec starting from Angular 13.
 `.mjs` files are compatible only with Angular 13 version and higher.
 
@@ -122,7 +122,7 @@ following the APF (Angular Package Format) spec starting from Angular 13.
 
 ### BREAKING CHANGES
 
-* The `@ngneat/input-mask` is shipped with `.mjs` files,
+* The `@ectuser/input-mask-test` is shipped with `.mjs` files,
 following the APF (Angular Package Format) spec starting from Angular 13.
 `.mjs` files are compatible only with Angular 13 version and higher.
 

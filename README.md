@@ -1,5 +1,5 @@
 <h1 align="center">
-  @ngneat/input-mask
+  @ectuser/input-mask-test
 </h1>
 
 <p align="center">
@@ -8,7 +8,7 @@
 
 <br />
 
-[![npm (scoped)](https://img.shields.io/npm/v/@ngneat/input-mask?style=flat-square)](https://www.npmjs.com/package/@ngneat/input-mask)
+[![npm (scoped)](https://img.shields.io/npm/v/@ectuser/input-mask-test?style=flat-square)](https://www.npmjs.com/package/@ectuser/input-mask-test)
 [![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg?style=flat-square)](https://github.com/ngneat/input-mask/blob/main/LICENSE)
 [![commitizen](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)]()
 [![PRs](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/ngneat/input-mask/pulls)
@@ -18,11 +18,11 @@
 [![spectator](https://img.shields.io/badge/tested%20with-spectator-2196F3.svg?style=flat-square)]()
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
 
-> @ngneat/input-mask is an angular library that creates an input mask. Behind the scene, it uses [inputmask](https://github.com/RobinHerbots/Inputmask).
+> @ectuser/input-mask-test is an angular library that creates an input mask. Behind the scene, it uses [inputmask](https://github.com/RobinHerbots/Inputmask).
 
 ## Compatibility with Angular Versions
 
-| @ngneat/input-mask | Angular        |
+| @ectuser/input-mask-test | Angular        |
 | ------------------ | -------------- |
 | 4.x.x              | >= 11.2.7 < 13 |
 | 5.x.x              | 13             |
@@ -43,20 +43,20 @@
 You can install it through **Angular CLI**, which is recommended:
 
 ```bash
-ng add @ngneat/input-mask
+ng add @ectuser/input-mask-test
 ```
 
 or with **npm**
 
 ```bash
-npm install @ngneat/input-mask inputmask@5
+npm install @ectuser/input-mask-test inputmask@5
 npm install -D @types/inputmask@5
 ```
 
 When you install using **npm** or **yarn**, you will also need to import `InputMaskModule` in your `app.module`:
 
 ```typescript
-import { InputMaskModule } from '@ngneat/input-mask';
+import { InputMaskModule } from '@ectuser/input-mask-test';
 
 @NgModule({
   imports: [InputMaskModule],
@@ -69,7 +69,7 @@ class AppModule {}
 There few configuration options available with `InputMaskModule`:
 
 ```typescript
-import { InputMaskModule } from '@ngneat/input-mask';
+import { InputMaskModule } from '@ectuser/input-mask-test';
 
 @NgModule({
   imports: [InputMaskModule.forRoot({ inputSelector: 'input', isAsync: true })],
@@ -91,7 +91,7 @@ class AppModule {}
 ```typescript
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { createMask } from '@ngneat/input-mask';
+import { createMask } from '@ectuser/input-mask-test';
 
 @Component({
   selector: 'app-root',
@@ -263,7 +263,7 @@ export class AppComponent {
 So to apply input-mask on `CustomInputComponent`, use configuration with `InputMaskModule` like below:
 
 ```typescript
-import { InputMaskModule } from '@ngneat/input-mask';
+import { InputMaskModule } from '@ectuser/input-mask-test';
 
 @NgModule({
   imports: [

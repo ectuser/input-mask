@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
-import { InputmaskOptions } from '@ngneat/input-mask';
+import { InputmaskOptions } from '@ectuser/input-mask-test';
 
 @Component({
   selector: 'app-custom-input',
