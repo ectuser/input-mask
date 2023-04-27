@@ -1,6 +1,6 @@
 {
   "name": "@ectuser/input-mask-test",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "@ectuser/input-mask-test is an angular library that creates an input mask.",
   "peerDependencies": {
     "@angular/core": ">=14.0.0",
