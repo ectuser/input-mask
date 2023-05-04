@@ -119,7 +119,7 @@
         }
       }
     },
-    "@ngneat/input-mask": {
+    "@ectuser/input-mask-test": {
       "projectType": "library",
       "root": "projects/ngneat/input-mask",
       "sourceRoot": "projects/ngneat/input-mask/src",

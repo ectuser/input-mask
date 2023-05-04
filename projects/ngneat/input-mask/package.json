@@ -1,7 +1,7 @@
 {
-  "name": "@ngneat/input-mask",
-  "version": "0.0.0",
-  "description": "@ngneat/input-mask is an angular library that creates an input mask.",
+  "name": "@ectuser/input-mask-test",
+  "version": "0.0.2",
+  "description": "@ectuser/input-mask-test is an angular library that creates an input mask.",
   "peerDependencies": {
     "@angular/core": ">=14.0.0",
     "inputmask": "^5.0.7"

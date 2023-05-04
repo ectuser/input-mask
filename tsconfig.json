@@ -17,7 +17,9 @@
     "module": "es2020",
     "lib": ["es2018", "dom"],
     "paths": {
-      "@ngneat/input-mask": ["projects/ngneat/input-mask/src/public-api.ts"]
+      "@ectuser/input-mask-test": [
+        "projects/ngneat/input-mask/src/public-api.ts"
+      ]
     }
   },
   "angularCompilerOptions": {

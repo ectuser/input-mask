@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UntypedFormControl, Validators } from '@angular/forms';
-import { createMask } from '@ngneat/input-mask';
+import { createMask } from '@ectuser/input-mask-test';
 
 @Component({
   selector: 'app-root',
